@@ -16,9 +16,10 @@ public class App {
 	public static void main(String[] args) throws Exception {
 	
 		FlightService flightService = new FlightService();
+		flightService.findFlightById(1);
 //		Customer customer = new Customer();
 //		CustomerService customerService = new CustomerService();
-		Scanner scanner = new Scanner(System.in);
+//		Scanner scanner = new Scanner(System.in);
 //		String firstName, lastName, email, category;
 //		System.out.println("Enter your first name:");
 //		firstName = scanner.next();
@@ -39,13 +40,13 @@ public class App {
 //		customer.setCustomerCategory(customerCategory);
 //		customerService.saveCustomer(customer);
 
-		String departurePlace, destination, seat;
-		int id;
-		System.out.println("Enter your departurePlace:");
-		departurePlace = scanner.next();
-		System.out.println("Enter your destination: ");
-		destination = scanner.next();
-		System.out.println(flightService.findFlightByCity(departurePlace, destination));
+//		String departurePlace, destination, seat;
+//		int id;
+//		System.out.println("Enter your departurePlace:");
+//		departurePlace = scanner.next();
+//		System.out.println("Enter your destination: ");
+//		destination = scanner.next();
+//		System.out.println(flightService.findFlightByCity(departurePlace, destination));
 //		System.out.println("Enter your destination id:");
 //		id = scanner.nextInt();
 //		System.out.println(flightService.findFlightById(id));
@@ -55,7 +56,7 @@ public class App {
 //		System.out.println(selectedFlight.getSeats().put(seat, false));
 //		flightService.updateFlight(selectedFlight);
 		
-		scanner.close();
+//		scanner.close();
 	}
 
 }

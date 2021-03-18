@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
+import javax.persistence.MapKey;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,11 +41,11 @@ public class Flight {
 	@Column
 	private String date;
 
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "flight_seats_treemap", 
       joinColumns = {@JoinColumn(name = "flight_id", referencedColumnName = "id")})
-	@MapKeyColumn(name = "seat_name")
-	@Column(name = "seat_available")
+	@MapKeyColumn(name = "seat_name") // column name for map "key"
+	@Column(name = "seat_available") // column name for map "value"
 	private Map<String, Boolean> seats = new TreeMap<String, Boolean>();
 
 	@Column
