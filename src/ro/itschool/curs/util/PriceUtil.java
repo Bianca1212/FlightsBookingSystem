@@ -12,14 +12,17 @@ public class PriceUtil {
 		switch(customerCategory) {
 		case ADULT:
 			System.out.println("Ticket price is: " + price + " euro");
+			break;
 		case SENIOR:
-			price = price + (price * seniorDiscount);
+			price = price - (price * seniorDiscount);
 			System.out.println("Ticket price is: " + price + " euro");
+			break;
 		case TEENAGER:
-			price = price + (price * teenagerDiscount);
+			price = price - (price * teenagerDiscount);
 			System.out.println("Ticket price is: " + price + " euro");
+			break;
 		case CHILDREN:
-			price = price + (price * childrenDiscount);
+			price = price - (price * childrenDiscount);
 			System.out.println("Ticket price is: " + price + " euro");
 			break;
 			default:

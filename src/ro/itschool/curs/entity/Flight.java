@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapKey;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

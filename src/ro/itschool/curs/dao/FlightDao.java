@@ -1,6 +1,9 @@
 package ro.itschool.curs.dao;
 
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.Map.Entry;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -64,11 +67,16 @@ public class FlightDao implements EntityDao<Flight, Integer> {
 		List<Flight> flights = session.createQuery(
 				"from Flight f where f.departurePlace like CONCAT('%',:departurePlace,'%') and f.destination like CONCAT('%',:destination,'%')")
 				.setParameter("departurePlace", departurePlace).setParameter("destination", destination).list();
-		{
-			if (flights.isEmpty())
-				throw new Exception("There are no flights available!");
-			return flights;
+
+		if (flights.isEmpty())
+			throw new Exception("There are no flights available!");
+
+		for (Flight f : flights) {
+			f.setSeats(sortByKey(f.getSeats()));
 		}
+
+		return flights;
+
 	}
 
 	@Override
@@ -90,4 +98,17 @@ public class FlightDao implements EntityDao<Flight, Integer> {
 		session.createQuery("delete from Flight").executeUpdate();
 	}
 
+	private TreeMap<String, Boolean> sortByKey(Map<String, Boolean> map) {
+		// TreeMap to store values of HashMap
+		TreeMap<String, Boolean> sorted = new TreeMap<>();
+
+		// Copy all data from HashMap into TreeMap
+		sorted.putAll(map);
+
+		// Display the TreeMap which is naturally sorted
+		for (Entry<String, Boolean> entry : sorted.entrySet())
+			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+
+		return sorted;
+	}
 }
