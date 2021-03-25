@@ -17,6 +17,7 @@ public class App {
 
 		FlightService flightService = new FlightService();
 		flightService.findFlightById(1);
+		
 		Customer customer = new Customer();
 		CustomerService customerService = new CustomerService();
 		Scanner scanner = new Scanner(System.in);
@@ -47,17 +48,21 @@ public class App {
 		System.out.println("Enter your destination: ");
 		destination = scanner.next();
 		System.out.println(flightService.findFlightByCity(departurePlace, destination));
-		System.out.println("Enter your destination id:");
+		System.out.println("Choose your destination id:");
 		id = scanner.nextInt();
-		System.out.println(flightService.findFlightById(id));
+		Flight selectedFlight = flightService.findFlightById(id);
+		System.out.println(selectedFlight);
 		System.out.println("Select a seat:");
 		seat = scanner.next();
-		Flight selectedFlight = flightService.findFlightById(id);
+		while (!selectedFlight.getSeats().get(seat)) {
+			System.out.println("Seat not available, please select another one!");
+			seat = scanner.next();
+		}
 		System.out.println(selectedFlight.getSeats().put(seat, false));
 		flightService.updateFlight(selectedFlight);
 
 		Ticket ticket = selectedFlight.getTicket();
-		System.out.println("Enter again your age category:");
+		System.out.println("Please enter again your age category for price calculation:");
 		String category1 = scanner.next();
 		CustomerCategory customerCategory1 = CustomerCategory.valueOf(category1);
 		PriceUtil.ticketPrice(ticket.getPrice(), customerCategory1);
